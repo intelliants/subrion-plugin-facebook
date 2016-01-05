@@ -4,9 +4,9 @@
 	<summary>Facebook social plugin. Please read the installation section carefully before using the plugin</summary>
 	<author>Intelliants LLC</author>
 	<contributor>Intelliants LLC</contributor>
-	<version>3.2.3</version>
-	<date>2015-10-08</date>
-	<compatibility>3.2</compatibility>
+	<version>4.0.0</version>
+	<date>2016-01-05</date>
+	<compatibility>4.0</compatibility>
 
 	<phrases>
 		<phrase key="fb_admin_id" category="tooltip">Facebook user IDs, comma separated</phrase>
@@ -34,11 +34,11 @@
 	<hooks>
 		<hook name="smartyFrontAfterHeadSection" type="smarty">
 			<![CDATA[
-{if $config.fb_admin_id}
+{if $core.config.fb_admin_id}
 	<meta property="fb:admins" content="{$core.config.fb_admin_id}" />
 {/if}
 
-{if $config.fb_app_id}
+{if $core.config.fb_app_id}
 	<meta property="fb:app_id" content="{$core.config.fb_app_id}" />
 {/if}
 
@@ -59,48 +59,14 @@
 	<blocks>
 		<block name="facebook" title="Facebook" header="0" position="bottom" type="smarty">
 			<![CDATA[
-{if $config.fb_like}
-	<fb:like href="{$core.config.fb_like_url|default:$smarty.const.IA_SELF}" send="true" show_faces="{if $config.fb_like_faces}true{else}false{/if}"></fb:like>
+{if $core.config.fb_like}
+	<fb:like href="{$core.config.fb_like_url|default:$smarty.const.IA_SELF}" send="true" show_faces="{if $core.config.fb_like_faces}true{else}false{/if}"></fb:like>
 {/if}
 
-{if $config.fb_comments}
+{if $core.config.fb_comments}
 	<fb:comments href="{$smarty.const.IA_SELF}" colorscheme="{$core.config.fb_colorscheme}" numposts="{$core.config.fb_numposts}"></fb:comments>
 {/if}
 			]]>
 		</block>
 	</blocks>
-
-	<install>
-		<code>
-			<![CDATA[
-$sql = "SHOW COLUMNS FROM `{$iaDb->prefix}members` LIKE 'fb_id'";
-$exist = $iaDb->getAll($sql);
-
-if (empty($exist))
-{
-	$iaDb->query("ALTER TABLE `{$iaDb->prefix}members` ADD `fb_id` VARCHAR( 25 ) NULL COMMENT 'registered with Facebook'");
-}
-		]]>
-		</code>
-	</install>
-
-	<upgrade>
-		<code version="3.2.3">
-			<![CDATA[
-$iaCore = iaCore::instance();
-$iaBlock = $iaCore->factory('block');
-$id = $iaCore->iaDb->one('id', "`name` != 'facebook' AND `extras` = 'facebook'", $iaBlock::getTable());
-if ($id)
-{
-	$iaBlock->delete($id, false);
-}
-			]]>
-		</code>
-
-		<sql version="3.2.3">
-			<![CDATA[
-ALTER TABLE `{prefix}members` MODIFY `fb_id` VARCHAR( 25 ) NULL COMMENT 'registered with Facebook';
-			]]>
-		</sql>
-	</upgrade>
 </plugin>
