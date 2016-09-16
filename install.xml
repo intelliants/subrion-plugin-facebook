@@ -18,13 +18,13 @@
 	<config group="facebook" name="facebook" type="divider" description="Facebook Plugin Options">Facebook Options</config>
 	<config group="facebook" name="fb_app_id" type="text" description="Application ID" private="0"><![CDATA[296861757087170]]></config>
 	<config group="facebook" name="fb_app_secret" type="text" description="Application Secret" private="0"><![CDATA[bc424c8915a837e1e06cc27418342075]]></config>
-	<config group="facebook" name="fb_like" type="radio" multiplevalues="0,1" description="Show Like button">1</config>
+	<config group="facebook" name="fb_like" type="radio" values="0,1" description="Show Like button">1</config>
 	<config group="facebook" name="fb_like_url" type="text" description="Page to set likes for" show="fb_like|1"><![CDATA[]]></config>
-	<config group="facebook" name="fb_like_faces" type="radio" multiplevalues="0,1" description="Show faces for Like button" show="fb_like|1">1</config>
-	<config group="facebook" name="fb_comments" type="radio" multiplevalues="0,1" description="Enable Facebook comments">1</config>
+	<config group="facebook" name="fb_like_faces" type="radio" values="0,1" description="Show faces for Like button" show="fb_like|1">1</config>
+	<config group="facebook" name="fb_comments" type="radio" values="0,1" description="Enable Facebook comments">1</config>
 	<config group="facebook" name="fb_numposts" type="text" description="Number of comments to display" show="fb_comments|1">15</config>
-	<config group="facebook" name="fb_login" type="radio" multiplevalues="0,1" description="Enable Login with Facebook account">1</config>
-	<config group="facebook" name="fb_colorscheme" type="select" multiplevalues="light,dark" description="Colorscheme">light</config>
+	<config group="facebook" name="fb_login" type="radio" values="0,1" description="Enable Login with Facebook account">1</config>
+	<config group="facebook" name="fb_colorscheme" type="select" values="light,dark" description="Colorscheme">light</config>
 	<config group="facebook" name="fb_admin_id" type="text" description="Comments admins"><![CDATA[]]></config>
 
 	<pages>
